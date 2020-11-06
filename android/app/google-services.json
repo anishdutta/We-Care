@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "875415534364",
+    "firebase_url": "https://cbs-ngo.firebaseio.com",
+    "project_id": "cbs-ngo",
+    "storage_bucket": "cbs-ngo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875415534364:android:9fe31826c85c1edf7918d9",
+        "android_client_info": {
+          "package_name": "examples.co.we_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875415534364-agcj2u4igttdh9m0d9j7m1l0dqsrolb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "examples.co.we_care",
+            "certificate_hash": "a8a589f6f88210aa9eb99e6b4b30ed53c0c9f449"
+          }
+        },
+        {
+          "client_id": "875415534364-siqpctbbmornpaa4b0c00l1bd4uvv924.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiQsj_4HvOrlp4w8STqTV1LZ6-BRIdXkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875415534364-siqpctbbmornpaa4b0c00l1bd4uvv924.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
