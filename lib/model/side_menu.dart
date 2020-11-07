@@ -48,28 +48,31 @@ class _SideMenuState extends State<SideMenu> {
           Expanded(
             child: ListView(
               children: [
-                UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                    ),
-                  margin: EdgeInsets.only(bottom: 10.0,),
-                    accountName: Padding(
-                      padding: const EdgeInsets.only(top:20.0),
-                      child: Text(name,style: TextStyle(fontSize: 18.0)),
-                    ),
-                    accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
-                    currentAccountPicture: CircleAvatar(
-                      radius: 55,
-                      backgroundColor: Color(0xff0A0E21),
-                      child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 54.0,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(45.0),
-                            child: img==''?Image.asset('assets/profile-user.png',fit: BoxFit.fill):Image.network('$img'),
-                          )
+                GestureDetector(
+                  onTap: ()=>Navigator.pushNamedAndRemoveUntil(context, '/profile', (route) => false),
+                  child: UserAccountsDrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Colors.green,
                       ),
-                    )
+                    margin: EdgeInsets.only(bottom: 10.0,),
+                      accountName: Padding(
+                        padding: const EdgeInsets.only(top:20.0),
+                        child: Text(name,style: TextStyle(fontSize: 18.0)),
+                      ),
+                      accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
+                      currentAccountPicture: CircleAvatar(
+                        radius: 55,
+                        backgroundColor: Color(0xff0A0E21),
+                        child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 54.0,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(45.0),
+                              child: img==''?Image.asset('assets/profile-user.png',fit: BoxFit.fill):Image.network('$img'),
+                            )
+                        ),
+                      )
+                  ),
                 ),
                 ListTile(
                   onTap:()=> Navigator.pop(context),

@@ -5,8 +5,10 @@ import 'package:page_transition/page_transition.dart';
 import 'package:we_care/screens/dashboard.dart';
 import 'package:we_care/screens/form_here.dart';
 import 'package:we_care/screens/login_screen.dart';
+import 'package:we_care/screens/profile.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
+import 'package:we_care/screens/update_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +59,20 @@ class MyApp extends StatelessWidget {
             case '/form_here':
               return PageTransition(
                 child: FormHere(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+            case '/profile':
+              return PageTransition(
+                child: ProfileScreen(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+            case '/update_profile':
+              return PageTransition(
+                child: UpdateProfileScreen(),
                 type: PageTransitionType.leftToRight,
                 settings: settings,
               );
