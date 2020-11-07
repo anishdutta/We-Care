@@ -55,7 +55,7 @@ class _SideMenuState extends State<SideMenu> {
                   margin: EdgeInsets.only(bottom: 10.0,),
                     accountName: Padding(
                       padding: const EdgeInsets.only(top:20.0),
-                      child: Text('',style: TextStyle(fontSize: 18.0)),
+                      child: Text(name,style: TextStyle(fontSize: 18.0)),
                     ),
                     accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
                     currentAccountPicture: CircleAvatar(
@@ -136,7 +136,7 @@ class _SideMenuState extends State<SideMenu> {
                               ));
                               }
                             },
-                              leading: Icon(Icons.assignment_return,color: Colors.red,size: 30.0,),
+                              leading: Icon(Icons.logout,color: Colors.red,size: 30.0,),
                               title: Text('Logout',style: TextStyle(fontSize: 18.0,fontFamily: 'Montserrat')))
                         ],
                       )
