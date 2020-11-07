@@ -65,7 +65,7 @@ class _FormHereState extends State<FormHere> {
                   children: <Widget>[
                     new TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.attach_money_sharp),
+                        icon: const Icon(Icons.attach_file),
                         hintText: '',
                         labelText: 'Funds For',
                       ),
@@ -90,7 +90,7 @@ class _FormHereState extends State<FormHere> {
                     ),
                     TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.money),
+                        icon: const Icon(Icons.monetization_on),
                         hintText: '',
                         labelText: 'Total funds required',
                       ),
@@ -140,7 +140,7 @@ class _FormHereState extends State<FormHere> {
                     ),
                     new TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.supervised_user_circle_outlined),
+                        icon: const Icon(Icons.supervised_user_circle),
                         hintText: '',
                         labelText: 'Name',
                       ),
