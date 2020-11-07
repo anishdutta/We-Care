@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class NewDash extends StatefulWidget {
@@ -10,12 +11,11 @@ class NewDash extends StatefulWidget {
 class _NewDashState extends State<NewDash> {
   int _selectedItemIndex = 0;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String name ='';
-  String email='';
-  String img='';
+  String name = '';
+  String email = '';
+  String img = '';
   Future<bool> UserData() async {
-    try
-    {
+    try {
       if (_auth.currentUser != null) {
         name = _auth.currentUser.displayName;
         print(_auth.currentUser.displayName);
@@ -26,20 +26,25 @@ class _NewDashState extends State<NewDash> {
 
         return true;
       }
-    }
-    catch(e){
+    } catch (e) {
       print("Error =  $e");
     }
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: _scaffoldKey,
-      appBar:  AppBar(
+      appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.black,size: 30.0,), // set your color here
-          onPressed: () { _scaffoldKey.currentState.openDrawer();},
+          icon: Icon(
+            Icons.menu,
+            color: Colors.black,
+            size: 30.0,
+          ), // set your color here
+          onPressed: () {
+            _scaffoldKey.currentState.openDrawer();
+          },
         ),
         title: Text('We Care'),
         centerTitle: true,
@@ -50,7 +55,11 @@ class _NewDashState extends State<NewDash> {
             onPressed: () {
               // showSearch(context: context, delegate: Search(widget.lists));
             },
-            icon: Icon(Icons.search,color: Colors.black,size: 30.0,),
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+              size: 30.0,
+            ),
           )
         ],
       ),
@@ -74,10 +83,9 @@ class _NewDashState extends State<NewDash> {
                 ),
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 20, right: 20.0, top: 30),
+                      const EdgeInsets.only(left: 20, right: 20.0, top: 30),
                   child: Column(
                     children: [
-
                       Row(
                         children: [
                           Container(
@@ -107,92 +115,90 @@ class _NewDashState extends State<NewDash> {
                             width: 20,
                           ),
                           FutureBuilder(
-                            future: UserData(),
-    builder: (context, snapshot) {
-                              if(snapshot.hasData){
-                                return  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-      Text(
-      "$name",
-      style: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
-      color: Colors.white),
-      ),
-      SizedBox(
-      height: 10,
-      ),
-      Row(
-      children: [
-      Icon(
-      Icons.camera_front,
-      color: Colors.white,
-      ),
-      SizedBox(
-      width: 10,
-      ),
-      RichText(
-      text: TextSpan(
-      text: "$email",
-      style: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
-      ),
-      children: [
-
-      ]),
-      )
-      ],
-      )
-      ],
-      );
-                              }
-                              else{
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Christopher Summers",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.camera_front,
-                                          color: Colors.white,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                              text: "\$5320",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                              children: [
-                                                TextSpan(
-                                                    text: ".50",
-                                                    style: TextStyle(
-                                                        color: Colors.white38))
-                                              ]),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                );
-                              }
-    }
-
-                          )
+                              future: UserData(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "$name",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.camera_front,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                                text: "$email",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                                children: []),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  );
+                                } else {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Christopher Summers",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.camera_front,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                                text: "\$5320",
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                                children: [
+                                                  TextSpan(
+                                                      text: ".50",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.white38))
+                                                ]),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  );
+                                }
+                              })
                         ],
                       )
                     ],
@@ -231,14 +237,16 @@ class _NewDashState extends State<NewDash> {
                               "Poverty",
                               Color(0XFFD7CCC8).withOpacity(0.4),
                               Color(0XFF9499B7)),
-
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          buildActivityButton(Icons.supervised_user_circle, "Diseases",
-                              Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
+                          buildActivityButton(
+                              Icons.supervised_user_circle,
+                              "Diseases",
+                              Colors.blue.withOpacity(0.2),
+                              Color(0XFF01579B)),
                           buildActivityButton(
                               Icons.lightbulb_outline,
                               "Road",
@@ -249,7 +257,6 @@ class _NewDashState extends State<NewDash> {
                               "Others",
                               Color(0XFFD7CCC8).withOpacity(0.4),
                               Color(0XFF9499B7)),
-
                         ],
                       ),
                       SizedBox(
@@ -390,7 +397,6 @@ class _NewDashState extends State<NewDash> {
                     width: double.maxFinite,
                     color: Colors.grey.withOpacity(0.5),
                   ),
-
                 ],
               ),
             ),
@@ -412,12 +418,12 @@ class _NewDashState extends State<NewDash> {
         height: 60,
         decoration: index == _selectedItemIndex
             ? BoxDecoration(
-            border:
-            Border(bottom: BorderSide(width: 4, color: Colors.green)),
-            gradient: LinearGradient(colors: [
-              Colors.green.withOpacity(0.3),
-              Colors.green.withOpacity(0.016),
-            ], begin: Alignment.bottomCenter, end: Alignment.topCenter))
+                border:
+                    Border(bottom: BorderSide(width: 4, color: Colors.green)),
+                gradient: LinearGradient(colors: [
+                  Colors.green.withOpacity(0.3),
+                  Colors.green.withOpacity(0.016),
+                ], begin: Alignment.bottomCenter, end: Alignment.topCenter))
             : BoxDecoration(),
         child: Icon(
           icon,
@@ -510,7 +516,6 @@ class _NewDashState extends State<NewDash> {
   GestureDetector buildActivityButton(
       IconData icon, String title, Color backgroundColor, Color iconColor) {
     return GestureDetector(
-
       child: Container(
         margin: EdgeInsets.all(10),
         height: 90,
@@ -530,7 +535,7 @@ class _NewDashState extends State<NewDash> {
             Text(
               title,
               style:
-              TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
             )
           ],
         ),
