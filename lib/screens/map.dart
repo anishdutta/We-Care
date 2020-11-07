@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+int _selectedItemIndex = 1;
+
 class HomePage extends StatefulWidget {
   @override
   HomePageState createState() => HomePageState();
@@ -15,16 +17,28 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
   }
-  double zoomVal=5.0;
+
+  double zoomVal = 5.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Row(
+        children: [
+          buildNavBarItem(Icons.home, 0),
+          buildNavBarItem(Icons.map, 1),
+          buildNavBarItem(Icons.monetization_on, 2),
+          buildNavBarItem(Icons.person, 3),
+        ],
+      ),
       appBar: AppBar(
         backgroundColor: Colors.green,
         leading: IconButton(
-            icon: Icon(Icons.chevron_left,size: 35,),
+            icon: Icon(
+              Icons.chevron_left,
+              size: 35,
+            ),
             onPressed: () {
-            Navigator.pop(context);
+              Navigator.pop(context);
             }),
         title: Text("New York"),
       ),
@@ -33,30 +47,64 @@ class HomePageState extends State<HomePage> {
           _buildGoogleMap(context),
           _zoomminusfunction(),
           _zoomplusfunction(),
-         // _buildContainer(),
+          // _buildContainer(),
         ],
       ),
     );
   }
 
-  Widget _zoomminusfunction() {
+  GestureDetector buildNavBarItem(IconData icon, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedItemIndex = index;
+        });
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 4,
+        height: 60,
+        decoration: index == _selectedItemIndex
+            ? BoxDecoration(
+                border:
+                    Border(bottom: BorderSide(width: 4, color: Colors.green)),
+                gradient: LinearGradient(colors: [
+                  Colors.green.withOpacity(0.3),
+                  Colors.green.withOpacity(0.016),
+                ], begin: Alignment.bottomCenter, end: Alignment.topCenter))
+            : BoxDecoration(),
+        child: Icon(
+          icon,
+          color: index == _selectedItemIndex ? Color(0XFF00B868) : Colors.grey,
+        ),
+      ),
+    );
+  }
 
+  Widget _zoomminusfunction() {
     return Align(
       alignment: Alignment.topLeft,
       child: IconButton(
-          icon: Icon(FontAwesomeIcons.searchMinus,color:Color(0xff6200ee),size: 35.0,),
+          icon: Icon(
+            FontAwesomeIcons.searchMinus,
+            color: Color(0xff6200ee),
+            size: 35.0,
+          ),
           onPressed: () {
             zoomVal--;
-            _minus( zoomVal);
+            _minus(zoomVal);
           }),
     );
   }
-  Widget _zoomplusfunction() {
 
+  Widget _zoomplusfunction() {
     return Align(
       alignment: Alignment.topRight,
       child: IconButton(
-          icon: Icon(FontAwesomeIcons.searchPlus,color:Color(0xff6200ee),size: 35.0,),
+          icon: Icon(
+            FontAwesomeIcons.searchPlus,
+            color: Color(0xff6200ee),
+            size: 35.0,
+          ),
           onPressed: () {
             zoomVal++;
             _plus(zoomVal);
@@ -66,11 +114,14 @@ class HomePageState extends State<HomePage> {
 
   Future<void> _minus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
   }
+
   Future<void> _plus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
   }
 
   Widget _buildGoogleMap(BuildContext context) {
@@ -79,21 +130,31 @@ class HomePageState extends State<HomePage> {
       width: MediaQuery.of(context).size.width,
       child: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition:  CameraPosition(target: LatLng(40.712776, -74.005974), zoom: 12),
+        initialCameraPosition:
+            CameraPosition(target: LatLng(40.712776, -74.005974), zoom: 12),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
         markers: {
-          newyork1Marker,newyork2Marker,newyork3Marker,gramercyMarker,bernardinMarker,blueMarker
+          newyork1Marker,
+          newyork2Marker,
+          newyork3Marker,
+          gramercyMarker,
+          bernardinMarker,
+          blueMarker
         },
       ),
     );
   }
 
-  Future<void> _gotoLocation(double lat,double long) async {
+  Future<void> _gotoLocation(double lat, double long) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(lat, long), zoom: 15,tilt: 50.0,
-      bearing: 45.0,)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: LatLng(lat, long),
+      zoom: 15,
+      tilt: 50.0,
+      bearing: 45.0,
+    )));
   }
 }
 

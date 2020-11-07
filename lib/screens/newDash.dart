@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:we_care/model/side_menu.dart';
-
-
 GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class NewDash extends StatefulWidget {
@@ -57,7 +54,6 @@ class _NewDashState extends State<NewDash> {
           )
         ],
       ),
-      drawer: SideMenu(),
       bottomNavigationBar: Row(
         children: [
           buildNavBarItem(Icons.home, 0),
@@ -223,14 +219,8 @@ class _NewDashState extends State<NewDash> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/dashboard', (route) => false);
-                            },
-                            child: buildActivityButton(Icons.card_membership, "Women",
-                                Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
-                          ),
+                          buildActivityButton(Icons.card_membership, "Women",
+                              Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
                           buildActivityButton(
                               Icons.transfer_within_a_station,
                               "Waste mng",
