@@ -293,7 +293,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                     <div class="ml-2 overflow-hidden">
                                         <div class="flex items-center">
-                                            <a href="javascript:;" class="font-medium truncate mr-5">Robert De Niro</a> 
+                                            <a  class="font-medium truncate mr-5" >Robert De Niro</a> 
                                             <div class="text-xs text-gray-500 ml-auto whitespace-no-wrap">01:10 PM</div>
                                         </div>
                                         <div class="w-full truncate text-gray-600">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 20</div>
@@ -343,7 +343,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="dist\images\profile-13.jpg">
                                 </div>
                                 <div class="ml-4 mr-auto">
-                                    <div class="font-medium text-base">Robert De Niro</div>
+                                    <div class="font-medium text-base" id="emailofuser">loading..</div>
                                     <div class="text-gray-600">DevOps Engineer</div>
                                 </div>
                                 <div class="dropdown">
@@ -636,7 +636,8 @@ License: You must have a valid license purchased only from themeforest(the above
        
         <!-- END: Dark Mode Switcher-->
         <!-- BEGIN: JS Assets-->
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjDvJ3gdZ92nvKNVUGMwCHeaRRU0k92pE&libraries=places"></script>
         <script src="dist\js\app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
@@ -670,8 +671,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
       var user = firebase.auth().currentUser;
       if(user != null){
-          var email_id = user.uid;
+          var email_id = user.email;
          console.log(email_id);
+         $('#emailofuser').replaceWith('<b>'+email_id+'</b>');
          
       }
 
