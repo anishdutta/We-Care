@@ -344,39 +344,44 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <form class="validate-form">
                                         <div class="input-form">
                                             <label class="flex flex-col sm:flex-row"> Name <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, at least 2 characters</span> </label>
-                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="">
+                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="" id="name">
                                         </div>
                                         <div class="input-form mt-3">
                                             <label class="flex flex-col sm:flex-row"> Phone Number <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, integer only & maximum 3 characters</span> </label>
-                                            <input type="number" name="age" class="input w-full border mt-2" placeholder="21" maxlength="3" required="">
+                                            <input type="number" name="age" class="input w-full border mt-2" placeholder="21" maxlength="3" required="" id="phone">
                                         </div>
                                         <div class="input-form mt-3">
                                             <label class="flex flex-col sm:flex-row"> Email <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, email address format</span> </label>
-                                            <input type="email" name="email" class="input w-full border mt-2" placeholder="example@gmail.com" required="">
+                                            <input type="email" name="email" class="input w-full border mt-2" placeholder="example@gmail.com" required="" id="email">
                                         </div>
                                         <div class="input-form">
                                             <label class="flex flex-col sm:flex-row"> Area <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, at least 2 characters</span> </label>
-                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="">
+                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="" id="area">
                                         </div>
                                         <div class="input-form">
                                             <label class="flex flex-col sm:flex-row"> Condition of roads <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, at least 2 characters</span> </label>
-                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="">
+                                            <input type="text" name="name" class="input w-full border mt-2" placeholder="John Legend" minlength="2" required="" id="condition">
                                         </div>
                                         <div class="input-form mt-3">
                                             <label class="flex flex-col sm:flex-row">Problem Description <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, at least 10 characters</span> </label>
-                                            <textarea class="input w-full border mt-2" name="comment" placeholder="Type your comments" minlength="10" required=""></textarea>
+                                            <textarea class="input w-full border mt-2" name="comment" placeholder="Type your comments" minlength="10" required="" id="desc"></textarea>
                                         </div>
                                         <div class="input-form mt-3">
                                             <label class="flex flex-col sm:flex-row">Any suggestion from your side that can help
                                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">Required, at least 10 characters</span> </label>
-                                            <textarea class="input w-full border mt-2" name="comment" placeholder="Type your comments" minlength="10" required=""></textarea>
+                                            <textarea class="input w-full border mt-2" name="comment" placeholder="Type your comments" minlength="10" required="" id="sug"></textarea>
                                         </div>
-                                        <form data-single="true" action="/file-upload" class="dropzone border-gray-200 border-dashed"><div class="text-lg font-medium">Upload a photo/video here</div> <div class="fallback"> <input name="file" type="file" /> </div> <div class="dz-message" data-dz-message>
+                                        <form data-single="true" action="/file-upload" class="dropzone border-gray-200 border-dashed">
+                                            <div class="text-lg font-medium">Upload a photo/video here</div> <div class="fallback"> 
+                                                <input  type="file" onchange="uploadFile()" id="paper" name="files[]" multiple > </div> <div class="dz-message" data-dz-message>
                                         </div> </form>
                                        
                                         
-                                        <button type="submit" class="button bg-theme-1 text-white mt-5">Submit</button>
+                                        <button type="submit" class="button bg-theme-1 text-white mt-5" id ="submit" onclick="submitwork()">Submit</button>
                                     </form>
+                                    <div class="bhokal">
+
+                                    </div>
                                 </div>
                             
                             </div>
@@ -391,9 +396,132 @@ License: You must have a valid license purchased only from themeforest(the above
    
         <!-- END: Dark Mode Switcher-->
         <!-- BEGIN: JS Assets-->
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjDvJ3gdZ92nvKNVUGMwCHeaRRU0k92pE&libraries=places"></script>
         <script src="dist\js\app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script>
+      // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAzclqpbdXwF_ChrN3vX0z9mrxmRdORRYg",
+    authDomain: "cbs-ngo.firebaseapp.com",
+    databaseURL: "https://cbs-ngo.firebaseio.com",
+    projectId: "cbs-ngo",
+    storageBucket: "cbs-ngo.appspot.com",
+    messagingSenderId: "875415534364",
+    appId: "1:875415534364:web:5bf2e0837d9b19ec7918d9",
+    measurementId: "G-Q893RCCJKN"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+  
+    if (user) {
+      // User is signed in.
+
+      
+      
+
+      var user = firebase.auth().currentUser;
+      if(user != null){
+          var email_id = user.email;
+         console.log(email_id);
+         
+      }
+
+
+
+    } else {
+      // No user is signed in.
+   alert('bhaag bsdk')
+      
+    }
+  });
+  var Name = '';
+    var Phone = '';
+    var Email = '';
+    var Area = '';
+    var condition = '';
+    var description = '';
+    var sug = '';
+    var photo = '';
+
+  function uploadFile(){
+    // Created a Storage Reference with root dir
+        var storageRef = firebase.storage().ref('Waste_management');
+    // Get the file from DOM
+        var brochure = document.getElementById("paper").files[0];
+    //dynamically set reference to the file name
+        var thisRef = storageRef.child(brochure.name);
+    //put request upload file to firebase storage
+    thisRef.put(brochure)
+.then(snapshot => {
+   return snapshot.ref.getDownloadURL();   // Will return a promise with the download link
+})
+
+.then(downloadURL => {
+    alert('Uploaded');
+  console.log(`Successfully uploaded file and got download link - ${downloadURL}`);
+  photo = downloadURL;
+  return downloadURL;
+})
+
+.catch(error => {
+  // Use to signal error if something goes wrong.
+  console.log(`Failed to upload file and get link - ${error}`);
+});
+
+    }
+   
+
+
+    function submitwork(){
+    //Get values
+    Name =document.getElementById('name').value;
+    Phone =document.getElementById('phone').value;
+    Email =document.getElementById('email').value;
+    Area =document.getElementById('area').value;
+    condition =document.getElementById('condition').value;
+    description =document.getElementById('desc').value;
+    sug =document.getElementById('sug').value;
+  
+    
+    saveMessage(Name , Phone , Email , Area,condition,description, sug);
+
+}
+
+    function saveMessage(Name , Phone , Email , Area,condition,description, sug)  { 
+   if(Name != '' && Phone != '' && Email != '' && Area != '' &&condition != '' &&description != '' && sug != '' && photo != ''){
+        firebase.database().ref('Waste_Management').push({    
+        Name : Name,
+        Phone: Phone,
+        Email:  Email,
+        Area: Area,
+        Condition: condition,
+        Description: description,
+        Suggestion : sug,
+        Photo: photo
+       
+        });
+        alert('Thanks for your time, your entry has been created');
+   }
+   else{
+       alert('Please fill all the forms')
+   }
+       
+     
+
+}  
+</script>
         <!-- END: JS Assets-->
     </body>
 </html>
