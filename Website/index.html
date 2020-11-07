@@ -51,8 +51,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         </h2>
                         <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">A few more clicks to sign in to your account. Manage all your e-commerce accounts in one place</div>
                         <div class="intro-x mt-8">
-                            <input type="text" class="intro-x login__input input input--lg border border-gray-300 block" placeholder="Email">
-                            <input type="password" class="intro-x login__input input input--lg border border-gray-300 block mt-4" placeholder="Password">
+                            <input type="text" class="intro-x login__input input input--lg border border-gray-300 block" placeholder="Email" id="email">
+                            <input type="password" class="intro-x login__input input input--lg border border-gray-300 block mt-4" placeholder="Password" id="password">
                         </div>
                         <div class="intro-x flex text-gray-700 dark:text-gray-600 text-xs sm:text-sm mt-4">
                             <div class="flex items-center mr-auto">
@@ -62,7 +62,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">Forgot Password?</a> 
                         </div>
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                           <a href="a-index.html"> <button class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3 align-top">Login</button></a>
+                           <a onclick="signin()"> <button class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3 align-top">Login</button></a>
                             <a href="login-light-register.html"><button class="button button--lg w-full xl:w-32 text-gray-700 border border-gray-300 dark:border-dark-5 dark:text-gray-300 mt-3 xl:mt-0 align-top">Sign up</button></a>
                         </div>
                         <div class="intro-x mt-10 xl:mt-24 text-gray-700 dark:text-gray-600 text-center xl:text-left">
@@ -79,7 +79,28 @@ License: You must have a valid license purchased only from themeforest(the above
       
         <!-- END: Dark Mode Switcher-->
         <!-- BEGIN: JS Assets-->
-        <script src="dist\js\app.js"></script>
+        
+
+
+
+
         <!-- END: JS Assets-->
     </body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="dist\js\app.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+<script src="JS/index.js">
+
+</script>
+
 </html>
