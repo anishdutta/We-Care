@@ -7,6 +7,7 @@ import 'package:we_care/screens/form_here.dart';
 import 'package:we_care/screens/login_screen.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
+import 'screens/newDash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,8 +62,16 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
               break;
+            case '/newDash':
+              return PageTransition(
+                child: NewDash(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
             default:
               return null;
+
           }
         });
   }

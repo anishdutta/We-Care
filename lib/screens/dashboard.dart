@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,6 +16,8 @@ List<String> needs=[
   'Blanket Needed For Aged People',
 ];
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final dbRef = FirebaseDatabase.instance.reference().child("Waste_Management");
+List<Map<dynamic, dynamic>> lists = [];
 String uid='-MLXOE1tu_G4EZbCgjom';
 Future<Map> UserData() async {
   try
@@ -69,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
         ),
       drawer: SideMenu(),
       body: FutureBuilder(
-        future: UserData(),
+        future: dbRef.once(),
         builder: (context, snapshot) {
           Map content = snapshot.data;
           print(content);

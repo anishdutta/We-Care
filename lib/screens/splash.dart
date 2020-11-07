@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Timer(
           Duration(seconds: 2),
               () => Navigator.pushNamedAndRemoveUntil(
-              context, '/new_dash', (route) => false));
+              context, '/newDash', (route) => false));
     else
       Timer(
           Duration(seconds: 2),

@@ -14,7 +14,9 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  String name ='';
+  String email='';
+  String img='';
   Future<bool> UserData() async {
     try
     {
@@ -34,11 +36,7 @@ class _SideMenuState extends State<SideMenu> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    UserData();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,52 +44,62 @@ class _SideMenuState extends State<SideMenu> {
       child: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                    ),
-                  margin: EdgeInsets.only(bottom: 10.0,),
-                    accountName: Padding(
-                      padding: const EdgeInsets.only(top:20.0),
-                      child: Text(name,style: TextStyle(fontSize: 18.0)),
-                    ),
-                    accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
-                    currentAccountPicture: CircleAvatar(
-                      radius: 55,
-                      backgroundColor: Color(0xff0A0E21),
-                      child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 54.0,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(45.0),
-                            child: img==''?Image.asset('assets/profile-user.png',fit: BoxFit.fill):Image.network('$img'),
+            child: FutureBuilder(
+              future: UserData(),
+              builder: (context, snapshot){
+                if(snapshot.hasData){
+                  return ListView(
+                    children: [
+                      UserAccountsDrawerHeader(
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                          ),
+                          margin: EdgeInsets.only(bottom: 10.0,),
+                          accountName: Padding(
+                            padding: const EdgeInsets.only(top:20.0),
+                            child: Text(name,style: TextStyle(fontSize: 18.0)),
+                          ),
+                          accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
+                          currentAccountPicture: CircleAvatar(
+                            radius: 55,
+                            backgroundColor: Color(0xff0A0E21),
+                            child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 54.0,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(45.0),
+                                  child: img==''?Image.asset('assets/profile-user.png',fit: BoxFit.fill):Image.network('$img'),
+                                )
+                            ),
                           )
                       ),
-                    )
-                ),
-                ListTile(
-                  onTap:()=> Navigator.pop(context),
-                  title: Text('Home',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
-                  trailing:Icon(Icons.home,size: 30.0,color: Colors.green,) ,
-                ),
-                ListTile(
-                  onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/about', (route) => false),
-                  title: Text('About Us',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
-                  trailing:Icon(Icons.description,size: 30.0,color: Colors.green,) ,
-                ),
-                ListTile(
-                  onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/form_here', (route) => false),
-                  title: Text('Ask To Donate',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
-                  trailing:Icon(Icons.monetization_on,size: 30.0,color: Colors.green,) ,
-                ),
-                ListTile(
-                  onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/contact', (route) => false),
-                  title: Text('Contact Us',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
-                  trailing:Icon(Icons.phone_android,size: 30.0,color: Colors.green,) ,
-                ),
-              ],
+                      ListTile(
+                        onTap:()=> Navigator.pop(context),
+                        title: Text('Home',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
+                        trailing:Icon(Icons.home,size: 30.0,color: Colors.green,) ,
+                      ),
+                      ListTile(
+                        onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/about', (route) => false),
+                        title: Text('About Us',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
+                        trailing:Icon(Icons.description,size: 30.0,color: Colors.green,) ,
+                      ),
+                      ListTile(
+                        onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/form_here', (route) => false),
+                        title: Text('Ask To Donate',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
+                        trailing:Icon(Icons.monetization_on,size: 30.0,color: Colors.green,) ,
+                      ),
+                      ListTile(
+                        onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/contact', (route) => false),
+                        title: Text('Contact Us',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
+                        trailing:Icon(Icons.phone_android,size: 30.0,color: Colors.green,) ,
+                      ),
+                    ],
+                  );
+                }
+                else{
+                  return Text('loading..');
+                }
+              },
             ),
           ),
 
@@ -136,7 +144,7 @@ class _SideMenuState extends State<SideMenu> {
                               ));
                               }
                             },
-                              leading: Icon(Icons.logout,color: Colors.red,size: 30.0,),
+                              leading: Icon(Icons.supervised_user_circle,color: Colors.red,size: 30.0,),
                               title: Text('Logout',style: TextStyle(fontSize: 18.0,fontFamily: 'Montserrat')))
                         ],
                       )
