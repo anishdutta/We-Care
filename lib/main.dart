@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:we_care/screens/dashboard.dart';
+import 'package:we_care/screens/form_here.dart';
 import 'package:we_care/screens/login_screen.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
@@ -49,6 +50,13 @@ class MyApp extends StatelessWidget {
             case '/dashboard':
               return PageTransition(
                 child:  Dashboard(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+            case '/form_here':
+              return PageTransition(
+                child: FormHere(),
                 type: PageTransitionType.leftToRight,
                 settings: settings,
               );

@@ -82,6 +82,11 @@ class _SideMenuState extends State<SideMenu> {
                   trailing:Icon(Icons.description,size: 30.0,color: Colors.green,) ,
                 ),
                 ListTile(
+                  onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/form_here', (route) => false),
+                  title: Text('Ask To Donate',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
+                  trailing:Icon(Icons.monetization_on,size: 30.0,color: Colors.green,) ,
+                ),
+                ListTile(
                   onTap:()=> Navigator.pushNamedAndRemoveUntil(context, '/contact', (route) => false),
                   title: Text('Contact Us',style: TextStyle(fontSize: 18.0,color: Colors.green,fontFamily: 'Montserrat')),
                   trailing:Icon(Icons.phone_android,size: 30.0,color: Colors.green,) ,
