@@ -72,122 +72,164 @@ class _DashboardState extends State<Dashboard> {
       drawer: SideMenu(),
       body: FutureBuilder(
         future: dbRef.once(),
-        builder: (context, snapshot) {
-          Map content = snapshot.data;
-          print(content);
-          return  (snapshot.hasData)?GridView.count(
-            crossAxisCount: 1,
-            scrollDirection:Axis.vertical ,
-            children: List.generate(content.length, (index) {
-              return GestureDetector(
-                onTap: ()=>null,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  margin: EdgeInsets.all(20.0),
-                  elevation: 10.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius:BorderRadius.circular(20),
-                        color: Colors.grey[300]
-                    ),
-                    margin: EdgeInsets.all(10.0),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 10.0,left: 10.0,right: 10.0),
-                                child: Text(content[uid]['Condition'],style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold,fontFamily: 'Montserrat'),),
-                              )),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 8),
-                              decoration: BoxDecoration(
-                                borderRadius:BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: NetworkImage(content[uid]['Photo']),
-                                  fit: BoxFit.fill,
-                                ),
+        builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
 
+          if (snapshot.hasData) {
+            lists.clear();
+            Map<dynamic, dynamic> values = snapshot.data.value;
+            values.forEach((key, values) {
+              lists.add(values);
+            });
+            return GridView.count(
+              crossAxisCount: 1,
+              scrollDirection: Axis.vertical,
+              children: List.generate(content.length, (index) {
+                return GestureDetector(
+                  onTap: () => null,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    margin: EdgeInsets.all(20.0),
+                    elevation: 10.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.grey[300]
+                      ),
+                      margin: EdgeInsets.all(10.0),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 10.0, left: 10.0, right: 10.0),
+                                  child: Text(lists[index]["Name"],
+                                    style: TextStyle(fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Montserrat'),),
+                                )),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: NetworkImage(lists[index]["Photo"]),
+                                    fit: BoxFit.fill,
+                                  ),
+
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child:Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(width: 10.0,),
-                                    CircleAvatar(
-                                      radius: 30.0,
-                                      backgroundImage: AssetImage('assets/user.png'),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 10.0,left: 30.0,right: 10.0),
-                                      child: Text(content[uid]['Name'],style: TextStyle(fontSize: 18.0,fontFamily: 'Montserrat'),),
-                                    ),
-                                    Spacer(),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 10.0,left: 0.0,right: 20.0),
-                                      child: Text('1h ago',style: TextStyle(fontSize: 18.0,fontFamily: 'Montserrat'),),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child:Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *0.20,
-                                      padding: EdgeInsets.only(top: 10.0,left: 30.0,right: 10.0),
-                                      child: GestureDetector(
-                                        onTap: null,
-                                        child: Image.asset('assets/donation.png'),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(width: 10.0,),
+                                      CircleAvatar(
+                                        radius: 30.0,
+                                        backgroundImage: AssetImage(
+                                            'assets/user.png'),
                                       ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *0.20,
-                                      padding: EdgeInsets.only(top: 10.0,left: 30.0,right: 10.0),
-                                      child: GestureDetector(
-                                        onTap: ()=>Navigator.pushNamed(context, '/map'),
-                                        child: Image.asset('assets/location.png'),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 30.0, right: 10.0),
+                                        child: Text(lists[index]["Area"],
+                                          style: TextStyle(fontSize: 18.0,
+                                              fontFamily: 'Montserrat'),),
                                       ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *0.20,
-                                      padding: EdgeInsets.only(top: 10.0,left: 30.0,right: 10.0),
-                                      child: GestureDetector(
-                                        onTap: ()=>share(context, dummy),
-                                        child: Image.asset('assets/share.png'),
+                                      Spacer(),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 0.0, right: 20.0),
+                                        child: Text('1h ago', style: TextStyle(
+                                            fontSize: 18.0,
+                                            fontFamily: 'Montserrat'),
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 1,
+                                          softWrap: false,),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
+                                    ],
+                                  ),
+                                )
+                            ),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceEvenly,
+                                    children: [
+                                      Container(
+                                        width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width * 0.20,
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 30.0, right: 10.0),
+                                        child: GestureDetector(
+                                          onTap: null,
+                                          child: Image.asset(
+                                              'assets/donation.png'),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width * 0.20,
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 30.0, right: 10.0),
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              Navigator.pushNamed(
+                                                  context, '/map'),
+                                          child: Image.asset(
+                                              'assets/location.png'),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width * 0.20,
+                                        padding: EdgeInsets.only(
+                                            top: 10.0, left: 30.0, right: 10.0),
+                                        child: GestureDetector(
+                                          onTap: () => share(context, dummy),
+                                          child: Image.asset(
+                                              'assets/share.png'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                            ),
 
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            }),
-          ):Container(
-            child: SpinKitFadingCircle(
-              size: 70.0,
-              color: Colors.green,
-            ),
-          );
+                );
+              }),
+            );
+          }
+          else{
+            return Container(
+              child: SpinKitFadingCircle(
+                size: 70.0,
+                color: Colors.green,
+              ),
+            );
+          }
+
         },
       )
     );

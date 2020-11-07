@@ -8,6 +8,7 @@ import 'package:we_care/screens/login_screen.dart';
 import 'package:we_care/screens/map.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
+import 'screens/newDash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,6 +66,13 @@ class MyApp extends StatelessWidget {
             case '/map':
               return PageTransition(
                 child: HomePage(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+            case '/newdash':
+              return PageTransition(
+                child: NewDash(),
                 type: PageTransitionType.leftToRight,
                 settings: settings,
               );
