@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:we_care/screens/dashboard.dart';
 import 'package:we_care/screens/form_here.dart';
 import 'package:we_care/screens/login_screen.dart';
+import 'package:we_care/screens/map.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute:'/splash',
+        initialRoute: '/splash',
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/splash':
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
               break;
             case '/dashboard':
               return PageTransition(
-                child:  Dashboard(),
+                child: Dashboard(),
                 type: PageTransitionType.leftToRight,
                 settings: settings,
               );
@@ -61,10 +62,16 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
               break;
+            case '/map':
+              return PageTransition(
+                child: HomePage(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
             default:
               return null;
           }
         });
   }
 }
-
