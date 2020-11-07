@@ -158,7 +158,7 @@ class _DashboardState extends State<Dashboard> {
                                       width: MediaQuery.of(context).size.width *0.20,
                                       padding: EdgeInsets.only(top: 10.0,left: 30.0,right: 10.0),
                                       child: GestureDetector(
-                                        onTap: null,
+                                        onTap: ()=>Navigator.pushNamed(context, '/map'),
                                         child: Image.asset('assets/location.png'),
                                       ),
                                     ),
