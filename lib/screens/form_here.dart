@@ -43,11 +43,7 @@ class _FormHereState extends State<FormHere> {
 
   GestureDetector buildNavBarItem(IconData icon, int index) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedItemIndex = index;
-        });
-      },
+
       child: Container(
         width: MediaQuery.of(context).size.width / 4,
         height: 60,
@@ -73,10 +69,31 @@ class _FormHereState extends State<FormHere> {
     return Scaffold(
       bottomNavigationBar: Row(
         children: [
-          buildNavBarItem(Icons.home, 0),
-          buildNavBarItem(Icons.map, 1),
-          buildNavBarItem(Icons.monetization_on, 2),
-          buildNavBarItem(Icons.person, 3),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/newdash', (route) => false);
+              },
+              child: buildNavBarItem(Icons.home, 0)),
+          GestureDetector(
+              onTap: (){
+                print("hey");
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/map', (route) => false);
+              },
+              child: buildNavBarItem(Icons.map, 1)),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/form_here', (route) => false);
+              },
+              child: buildNavBarItem(Icons.monetization_on, 2)),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/profile', (route) => false);
+              },
+              child: buildNavBarItem(Icons.person, 3)),
         ],
       ),
       appBar: new AppBar(

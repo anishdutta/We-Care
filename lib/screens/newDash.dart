@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:we_care/model/side_menu.dart';
 GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class NewDash extends StatefulWidget {
@@ -54,12 +55,35 @@ class _NewDashState extends State<NewDash> {
           )
         ],
       ),
+      drawer: SideMenu(),
+
       bottomNavigationBar: Row(
         children: [
-          buildNavBarItem(Icons.home, 0),
-          buildNavBarItem(Icons.map, 1),
-          buildNavBarItem(Icons.monetization_on, 2),
-          buildNavBarItem(Icons.person, 3),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/newdash', (route) => false);
+            },
+              child: buildNavBarItem(Icons.home, 0)),
+          GestureDetector(
+            onTap: (){
+              print("hey");
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/map', (route) => false);
+            },
+              child: buildNavBarItem(Icons.map, 1)),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/form_here', (route) => false);
+            },
+              child: buildNavBarItem(Icons.monetization_on, 2)),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/profile', (route) => false);
+              },
+              child: buildNavBarItem(Icons.person, 3)),
         ],
       ),
       body: Stack(
@@ -114,7 +138,7 @@ class _NewDashState extends State<NewDash> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
       Text(
-      "$name",
+      "We care NGO",
       style: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.w600,
@@ -219,11 +243,17 @@ class _NewDashState extends State<NewDash> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          buildActivityButton(Icons.card_membership, "Women",
-                              Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, '/dashboard', (route) => false);
+                            },
+                            child: buildActivityButton(Icons.card_membership, "Women",
+                                Colors.blue.withOpacity(0.2), Color(0XFF01579B)),
+                          ),
                           buildActivityButton(
                               Icons.transfer_within_a_station,
-                              "Waste mng",
+                              "Waste",
                               Colors.cyanAccent.withOpacity(0.2),
                               Color(0XFF0097A7)),
                           buildActivityButton(
@@ -265,9 +295,9 @@ class _NewDashState extends State<NewDash> {
                       SizedBox(
                         height: 20,
                       ),
-                      buildCategoryCard(Icons.fastfood, "Food", 120, 20),
-                      buildCategoryCard(Icons.flash_on, "Utilities", 430, 17),
-                      buildCategoryCard(Icons.fastfood, "Food", 120, 20),
+                      buildCategoryCard(Icons.fastfood, "Food for poor", 120, 20),
+                      buildCategoryCard(Icons.flash_on, "Flood relief", 430, 17),
+                      buildCategoryCard(Icons.fastfood, "Odissa Pandemic", 120, 20),
                     ],
                   ),
                 ),
@@ -402,11 +432,7 @@ class _NewDashState extends State<NewDash> {
 
   GestureDetector buildNavBarItem(IconData icon, int index) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedItemIndex = index;
-        });
-      },
+
       child: Container(
         width: MediaQuery.of(context).size.width / 4,
         height: 60,

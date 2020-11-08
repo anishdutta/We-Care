@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:we_care/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // #272B4D
 class SignupScreen extends StatefulWidget {
@@ -267,8 +268,11 @@ class _SignupScreenState extends State<SignupScreen> {
                           setState(() {
                             showSpinner = false;
                           });
+                          final _auth = FirebaseAuth.instance;
+
+
                           Navigator.pushNamedAndRemoveUntil(
-                              context, '/dashboard', (route) => false);}
+                              context, '/newdash', (route) => false);}
                         else {
                           setState(() {
                             showSpinner = false;

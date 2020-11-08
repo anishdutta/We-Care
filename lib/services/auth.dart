@@ -36,11 +36,15 @@ Future<bool> signInWithGoogle() async {
 
 // Help  the User to Sign Up With Email And Password
 Future<bool> signUp(String email, String password) async {
+
   try {
     UserCredential userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
+
+
     final EmailAuthCredential credential =
         EmailAuthProvider.credential(email: email, password: password);
+
     if ((await FirebaseAuth.instance.signInWithCredential(credential))
             .toString() !=
         null) {
@@ -63,6 +67,7 @@ Future<bool> signUp(String email, String password) async {
     print(e.toString());
   }
   return false;
+
 }
 
 // Help  the User to Sign In With Email And Password

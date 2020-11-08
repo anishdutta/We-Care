@@ -57,7 +57,7 @@ class _SideMenuState extends State<SideMenu> {
                           margin: EdgeInsets.only(bottom: 10.0,),
                           accountName: Padding(
                             padding: const EdgeInsets.only(top:20.0),
-                            child: Text(name,style: TextStyle(fontSize: 18.0)),
+                            child: Text("Wecare",style: TextStyle(fontSize: 18.0)),
                           ),
                           accountEmail: Text(email,style: TextStyle(fontSize: 18.0)),
                           currentAccountPicture: CircleAvatar(

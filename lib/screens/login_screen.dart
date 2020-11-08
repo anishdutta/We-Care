@@ -201,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (verify)
                             {
                               Navigator.pushNamedAndRemoveUntil(
-                                  context, '/dashboard', (route) => false);}
+                                  context, '/newdash', (route) => false);}
                             else {
                               setState(() {
                                 showSpinner = false;

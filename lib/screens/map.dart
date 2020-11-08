@@ -24,10 +24,31 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       bottomNavigationBar: Row(
         children: [
-          buildNavBarItem(Icons.home, 0),
-          buildNavBarItem(Icons.map, 1),
-          buildNavBarItem(Icons.monetization_on, 2),
-          buildNavBarItem(Icons.person, 3),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/newdash', (route) => false);
+              },
+              child: buildNavBarItem(Icons.home, 0)),
+          GestureDetector(
+              onTap: (){
+                print("hey");
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/map', (route) => false);
+              },
+              child: buildNavBarItem(Icons.map, 1)),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/form_here', (route) => false);
+              },
+              child: buildNavBarItem(Icons.monetization_on, 2)),
+          GestureDetector(
+              onTap: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/profile', (route) => false);
+              },
+              child: buildNavBarItem(Icons.person, 3)),
         ],
       ),
       appBar: AppBar(
@@ -40,7 +61,7 @@ class HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.pop(context);
             }),
-        title: Text("New York"),
+        title: Text("Nearby Queries"),
       ),
       body: Stack(
         children: <Widget>[
@@ -55,11 +76,7 @@ class HomePageState extends State<HomePage> {
 
   GestureDetector buildNavBarItem(IconData icon, int index) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedItemIndex = index;
-        });
-      },
+
       child: Container(
         width: MediaQuery.of(context).size.width / 4,
         height: 60,
@@ -131,17 +148,15 @@ class HomePageState extends State<HomePage> {
       child: GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition:
-            CameraPosition(target: LatLng(40.712776, -74.005974), zoom: 12),
+            CameraPosition(target: LatLng(22.423216, 88.508576), zoom: 12),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
         markers: {
           newyork1Marker,
           newyork2Marker,
-          newyork3Marker,
-          gramercyMarker,
-          bernardinMarker,
-          blueMarker
+          newyork3Marker
+
         },
       ),
     );
@@ -160,7 +175,7 @@ class HomePageState extends State<HomePage> {
 
 Marker gramercyMarker = Marker(
   markerId: MarkerId('gramercy'),
-  position: LatLng(40.738380, -73.988426),
+  position: LatLng(22.423216, 88.508576),
   infoWindow: InfoWindow(title: 'Gramercy Tavern'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
@@ -169,7 +184,7 @@ Marker gramercyMarker = Marker(
 
 Marker bernardinMarker = Marker(
   markerId: MarkerId('bernardin'),
-  position: LatLng(40.761421, -73.981667),
+  position: LatLng(22.423216, 87.508576),
   infoWindow: InfoWindow(title: 'Le Bernardin'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
@@ -177,7 +192,7 @@ Marker bernardinMarker = Marker(
 );
 Marker blueMarker = Marker(
   markerId: MarkerId('bluehill'),
-  position: LatLng(40.732128, -73.999619),
+  position: LatLng(22.423216, 87.508576),
   infoWindow: InfoWindow(title: 'Blue Hill'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
@@ -188,24 +203,24 @@ Marker blueMarker = Marker(
 
 Marker newyork1Marker = Marker(
   markerId: MarkerId('newyork1'),
-  position: LatLng(40.742451, -74.005959),
-  infoWindow: InfoWindow(title: 'Los Tacos'),
+  position: LatLng(22.423216, 88.508566),
+  infoWindow: InfoWindow(title: 'Sangur road issue'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
   ),
 );
 Marker newyork2Marker = Marker(
-  markerId: MarkerId('newyork2'),
-  position: LatLng(40.729640, -73.983510),
-  infoWindow: InfoWindow(title: 'Tree Bistro'),
+  markerId: MarkerId('newyork1'),
+  position: LatLng(22.414116, 88.508566),
+  infoWindow: InfoWindow(title: 'Sangur waste'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
   ),
 );
 Marker newyork3Marker = Marker(
-  markerId: MarkerId('newyork3'),
-  position: LatLng(40.719109, -74.000183),
-  infoWindow: InfoWindow(title: 'Le Coucou'),
+  markerId: MarkerId('newyork1'),
+  position: LatLng(22.484116, 88.508566),
+  infoWindow: InfoWindow(title: 'Bhojerhat'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,
   ),

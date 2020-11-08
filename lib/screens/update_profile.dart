@@ -17,6 +17,7 @@ class UpdateProfileScreen extends StatefulWidget {
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   String Contactname='';
   String Contactno='';
+  String name = '';
   String Gender='';
   String uid='';
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -169,6 +170,41 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           color: Colors.blueGrey,
                         ),
                         labelText: 'Contact Number',
+                        labelStyle:
+                        TextStyle(color: Colors.blueGrey, fontSize: 18),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Colors.blueGrey, width: 1.5),
+                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                          BorderSide(color: Color(0xFF311EBD), width: 3),
+                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                        ),
+                      )),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: TextField(
+                      onChanged: (value) {
+                        name = value;
+                      },
+                      style: TextStyle(color: Colors.blueGrey),
+                      decoration: InputDecoration(
+                        suffixIcon: Icon(
+                          Icons.verified_user,
+                          color: Colors.blueGrey,
+                        ),
+                        labelText: 'Name',
                         labelStyle:
                         TextStyle(color: Colors.blueGrey, fontSize: 18),
                         contentPadding: EdgeInsets.symmetric(

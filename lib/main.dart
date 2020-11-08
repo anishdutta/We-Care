@@ -9,6 +9,9 @@ import 'package:we_care/screens/map.dart';
 import 'package:we_care/screens/signup_screen.dart';
 import 'package:we_care/screens/splash.dart';
 import 'screens/newDash.dart';
+import 'screens/profile.dart';
+import 'screens/update_profile.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,6 +80,21 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
               break;
+            case '/profile':
+              return PageTransition(
+                child: ProfileScreen(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+            case '/update_profile':
+              return PageTransition(
+                child: UpdateProfileScreen(),
+                type: PageTransitionType.leftToRight,
+                settings: settings,
+              );
+              break;
+
             default:
               return null;
           }
