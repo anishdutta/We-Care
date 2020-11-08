@@ -1,7 +1,7 @@
 # we_care
 <a href="https://ibb.co/SX7ZX2z"><img src="https://i.ibb.co/ns8KsTF/logo.png" alt="logo" border="0"></a>
 
-## A new Flutter application  for NGO
+## A new Flutter And Web application  for NGO's
 ## Overview
 In India we have more the 40 lacs NGO’s which estimates around 3 NGO’s per 1000 people that constitutes double the number of schools according to CSO of India. NGOs being the most vital sector of the country needs to reach out to the people in need and suffering from very basic to potential issues in our society. 
 So We CBS Hackers are feeling pride to present WE Care!
